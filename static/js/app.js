@@ -1,11 +1,9 @@
 //Read in data
-const url = ("./static/samples.json");
-
+d3.json("./static/samples.json").then((samples) => {
+        console.log(samples)
+});
 //Horizonatal Bar Chart with drop down menu to display the top 10 OTUs
         // Use sample_value for bar chart--otu_ids for lables-- otu_labels for hover text
-
-//Fetch the JSON data and console log it
-
  
 d3.selectAll("#selDataset").on("change", optionChanged);
 
@@ -18,16 +16,15 @@ function optionChanged() {
         console.log(dataset);
 }
 
-function demographInfo(){
-        var id = data.metadata.id
-        var ethnicity = data.metadata.ethnicity
-        var gender = data.metadata.gender
-        var age = data.metadata.age
-        var bbtype = data.metadata.bbtype
-        var wfreq = data.metadata.wfreq
+// function demographInfo(){
+//         var id = data.metadata.id
+//         var ethnicity = data.metadata.ethnicity
+//         var gender = data.metadata.gender
+//         var age = data.metadata.age
+//         var bbtype = data.metadata.bbtype
+//         var wfreq = data.metadata.wfreq
 
-}
-
+// }
 
 
 
