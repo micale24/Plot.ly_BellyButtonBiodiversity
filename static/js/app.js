@@ -1,14 +1,26 @@
 //Read in json sample data
 d3.json("./samples.json").then((importedData) => {
-    console.log(importedData);
-})
-//Drop down list
-var populateDropdown = (names) => {
-    var selecTag = d3.select("#selDataset");
-    var option = selecTag.selectAll('option').importedData(names);
+     console.log(importedData);
+     var data = importedData
 
-    option.enter().append('option').attr('value', function (d) { return d; }).text(function (d) { return d; });
-}
+     data.forEach((ID) => {
+         var selectTag = d3.select("#selDataset");
+         Object.defineProperties(ID).forEach(([value])=> {
+             var option = selectTag.append("option");
+             option.text(value);
+         });
+         
+     });
+
+
+
+
+
+
+})
+
+//Drop down list
+
 
 //select the html of the drop down list
 
