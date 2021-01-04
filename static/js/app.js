@@ -2,22 +2,20 @@
 d3.json("./samples.json").then((importedData) => {
      console.log(importedData);
      var data = importedData
+     var option = d3.select("#selDataset");
+     var names = data.names;
+     console.log(names)
 
-     data.forEach((ID) => {
-         var selectTag = d3.select("#selDataset");
-         Object.defineProperties(ID).forEach(([value])=> {
-             var option = selectTag.append("option");
-             option.text(value);
-         });
+     names.id.forEach(element => {
          
      });
-
-
-
-
-
-
-})
+         
+});
+    
+     
+     
+     
+    
 
 //Drop down list
 
