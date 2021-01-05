@@ -1,18 +1,31 @@
+
+
+d3.json("./samples.json").then((sampleId) => {
+    var id = sampleId.names;
+    console.log(id)
+});
+
+
 function demographicInfo(id){
     //Reading data from metadata from samples.json
     d3.json("./samples.json").then((importedData) => {
-        var metaData = data.metadata;
+        var metaData = importedData.metadata;
         console.log(metaData);
 
         //Filtering through metadata for id and converting to string
-        var demographicInfo = metaData.filter(meta => meta.id.toString() === id)[0];
-
+        var demoMetaData = metaData.filter(meta => meta.id.toString() === id)[0];
+        console.log(demoMetaData)
         //Selecting tag in index.html for demographic panel
         var demoPanel = d3.select("#sample-metadata");
+        
+        // demoPanel.html(" ");
 
-        demoPanel.html(" ");
-
-        Object.defineProperties(demographicInfo).forEach((key) => { demographicInfo.append("h7").text(key[0].toUpperCase() +":"+ key[1] + "\n");});
+        // Object.defineProperties(demoMetaData).forEach((key) => { 
+        //     demoPanel
+        //     .append("h7")
+        //     .text(key[0])
+        //     .toUpperCase() + ( ":"+ key[1] + "\n");
+        // });
 
     });
 };
@@ -34,7 +47,7 @@ function initialization() {
             });
 
         //Callback functions for plots and demographic info
-        demographicInfo(id);
+        demographicInfo();
     });
 };
 
