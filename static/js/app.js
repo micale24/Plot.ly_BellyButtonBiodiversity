@@ -9,7 +9,14 @@ d3.json("./samples.json").then((data) => {
     
 });
 
-function demographicPanel() {
+function demographicPanel(sample) {
+    
+    var demographicPanel = d3.select("#sample-metadata")
+    demographicPanel.html(" ")
+    Object.entries(metadata).forEach(([key,value]) =>{
+        console.log(key, value)
+        // demographicPanel.append("h5").text('${value}')
+    });
     //variable for metaData info
     
     //if function to match metaData info id
@@ -35,11 +42,11 @@ function initialization() {
             });
 
         //Callback functions for plots and demographic info
-        
-        demographicPanel()
+        sampleOne = nameID[0]
         // console.log(metadata[0].id)
-        // console.log(nameID[0])
+        console.log(sampleOne)
         // console.log(samples[0].id)
+        demographicPanel(sampleOne)
     });
     
 };
