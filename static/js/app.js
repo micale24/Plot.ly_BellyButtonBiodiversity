@@ -1,34 +1,22 @@
 
-
-d3.json("./samples.json").then((sampleId) => {
-    var id = sampleId.names;
-    console.log(id)
+//Globalization of variables commonly used data in functions 
+d3.json("./samples.json").then((data) => {
+    globalThis;{  
+        metadata = data.metadata
+        nameID = data.names
+        samples = data.samples
+    };
+    
 });
 
+function demographicPanel() {
+    //variable for metaData info
+    
+    //if function to match metaData info id
 
-function demographicInfo(id){
-    //Reading data from metadata from samples.json
-    d3.json("./samples.json").then((importedData) => {
-        var metaData = importedData.metadata;
-        console.log(metaData);
+    //Append to the index.html #sample-metadata h5
+}
 
-        //Filtering through metadata for id and converting to string
-        var demoMetaData = metaData.filter(meta => meta.id.toString() === id)[0];
-        console.log(demoMetaData)
-        //Selecting tag in index.html for demographic panel
-        var demoPanel = d3.select("#sample-metadata");
-        
-        // demoPanel.html(" ");
-
-        // Object.defineProperties(demoMetaData).forEach((key) => { 
-        //     demoPanel
-        //     .append("h7")
-        //     .text(key[0])
-        //     .toUpperCase() + ( ":"+ key[1] + "\n");
-        // });
-
-    });
-};
 
 
 
@@ -47,8 +35,13 @@ function initialization() {
             });
 
         //Callback functions for plots and demographic info
-        demographicInfo();
+        
+        demographicPanel()
+        // console.log(metadata[0].id)
+        // console.log(nameID[0])
+        // console.log(samples[0].id)
     });
+    
 };
 
 initialization();
