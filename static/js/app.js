@@ -1,5 +1,5 @@
 
-//Globalization of variables commonly used data in functions 
+//Globalization of variables commonly in functions 
 d3.json("./samples.json").then((data) => {
     globalThis;{  
         metadata = data.metadata
@@ -9,20 +9,18 @@ d3.json("./samples.json").then((data) => {
     
 });
 
-function demographicPanel(sample) {
+function demographicPanel(id) {
     
-    var demographicPanel = d3.select("#sample-metadata")
-    demographicPanel.html(" ")
-    Object.entries(metadata).forEach(([key,value]) =>{
-        console.log(key, value)
-        // demographicPanel.append("h5").text('${value}')
-    });
-    //variable for metaData info
-    
-    //if function to match metaData info id
+    var result = metadata.filter(meta => meta.id.toString() === id)[0];
 
-    //Append to the index.html #sample-metadata h5
-}
+    var demographicPanel = d3.select("#sample-metadata");    
+
+    demographicPanel.html("");
+
+    Object.entries(result).forEach((key) =>{
+        demographicPanel.append("h5").text(key[0].toLowerCase() + ":" + key[1] + "\n");
+    });
+};
 
 
 
@@ -42,11 +40,11 @@ function initialization() {
             });
 
         //Callback functions for plots and demographic info
-        sampleOne = nameID[0]
+        
         // console.log(metadata[0].id)
-        console.log(sampleOne)
+        // console.log(sampleOne)
         // console.log(samples[0].id)
-        demographicPanel(sampleOne)
+        demographicPanel(nameID[0]);
     });
     
 };
