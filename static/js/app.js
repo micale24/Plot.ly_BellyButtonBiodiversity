@@ -25,9 +25,9 @@ function Charts(id){
         //Filitering throught the sample data to match the id
         var chartSamples = data.samples.filter(s => s.id.toString() === id)[0];
         //Top ten samples ranging from highest to least
-        var chartTopOTU = (chartSamples.otu_ids.slice(0,10)).reverse();
+        var chartTopOTU = (chartSamples.sample_values.slice(0,10)).reverse();
         //X-axis label
-        var OTUid = chartTopOTU.map(d => "OTU"+ d);
+        var OTUid = chartTopOTU.map(d => "OTU"+" "+ d);
         //Y-axis lables for top ten OTUs
         var labels = (chartSamples.otu_labels.slice(0, 10));
 
@@ -37,7 +37,7 @@ function Charts(id){
             text: labels,
             marker: 
             {
-            color: 'blue',
+            color: "blue",
             type:"bar",
             orientation: "h"}
         };
@@ -46,15 +46,18 @@ function Charts(id){
         // Layout variable to set plots layout
         var layout = {
             title: "Top 10 OTU Samples",
+            barmode: "group",
             yaxis:{
                 tickmode:"linear",
             },
             margin: {
-                l: 80,
-                r: 80,
+                l: 150,
+                r: 150,
                 t: 90,
                 b: 20
                 }
+            
+            
             };
         Plotly.newPlot("bar", data, layout);
 
