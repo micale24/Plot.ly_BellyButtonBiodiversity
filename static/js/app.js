@@ -23,16 +23,16 @@ function Charts(id){
         //Bar Chart with top 10 OTU of samples
 
         //Filitering throught the sample data to match the id
-        var chartSamples = samples.filter(s => s.id.toString() === id)[0];
+        var chartSamples = data.samples.filter(s => s.id.toString() === id)[0];
         //Top ten samples ranging from highest to least
-        var chartTopOTU = (samples.otu_ids.slice(0,10)).reverse();
+        var chartTopOTU = (chartSamples.otu_ids.slice(0,10)).reverse();
         //X-axis label
         var OTUid = chartTopOTU.map(d => "OTU"+ d);
         //Y-axis lables for top ten OTUs
-        var labels = samples.otu_labels.silice(0, 10);
+        var labels = (chartSamples.otu_labels.slice(0, 10));
 
         var trace1 = {
-            x: chartSamples,
+            x: chartTopOTU,
             y: OTUid,
             text: labels,
             marker: 
@@ -67,14 +67,14 @@ function Charts(id){
         var bubbleData = [
             {
             title: 'Overview of All Samples',
-            x: samples.otu_ids,
+            x: chartSamples.otu_ids,
             y: OTUid,
             mode: "markers",
             text: labels,
             marker: 
                 {
-                size: samples[id].sample_values,
-                color: samples[id].otu_ids,
+                size: chartSamples.sample_values,
+                color: chartSamples.otu_ids,
                 colorscale: "Electric"
                 }
             }
@@ -95,10 +95,10 @@ function initialization() {
                 dropdown.append("option").text(name).property("value");
             });
 
-        //Callback functions for plots and demographic info
+        //Callback functions for plots and demographic inital sample
         var initalSample = data.names[0]
         demographicPanel(initalSample);
-        Charts(nameID[0])
+        Charts(initalSample)
     });
 };
 //Webpage rest to an inital value in dataset
