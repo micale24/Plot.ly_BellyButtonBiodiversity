@@ -5,6 +5,9 @@ d3.json("./samples.json").then((data) => {
         metadata = data.metadata
         nameID = data.names
         samples = data.samples
+        out_ids = samples.out_ids
+        out_lables = samples.out_lables
+        sample_values = samples.sample_values
     };
     
 });
@@ -23,7 +26,22 @@ function demographicPanel(id) {
 };
 
 
-
+function Charts(sample){
+    var bubbleLayout = {
+        margin: { t:0}, hovermode: "closest", xaxis: { title: "OTU ID"}
+    };
+    var bubbleData = [{
+        x:otu_ids,
+        y: sample_value,
+        text: otu_labels,
+        mode: "markers",
+        marker: {
+            size: sample_values,
+            color: otu_ids,
+            colorscale: "Earth"
+        }
+    }]
+};
 
 
 
@@ -40,15 +58,12 @@ function initialization() {
             });
 
         //Callback functions for plots and demographic info
-        
-        // console.log(metadata[0].id)
-        // console.log(sampleOne)
-        // console.log(samples[0].id)
         demographicPanel(nameID[0]);
     });
     
 };
 
+//Webpage rest to an inital value in dataset
 initialization();
 
 
