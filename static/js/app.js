@@ -5,9 +5,6 @@ d3.json("./samples.json").then((data) => {
         metadata = data.metadata
         nameID = data.names
         samples = data.samples
-        out_ids = samples.out_ids
-        out_lables = samples.out_lables
-        sample_values = samples.sample_values
     };
     
 });
@@ -26,23 +23,29 @@ function demographicPanel(id) {
 };
 
 
-function Charts(sample){
+function Charts(id){
+    // Build a Bubble Chart
     var bubbleLayout = {
-        margin: { t:0}, hovermode: "closest", xaxis: { title: "OTU ID"}
-    };
-    var bubbleData = [{
-        x:otu_ids,
-        y: sample_value,
-        text: otu_labels,
-        mode: "markers",
-        marker: {
-            size: sample_values,
-            color: otu_ids,
+        margin: {t: 0},
+        hovermode: "closest",
+        xaxis: {title: "OTU ID"}
+      };
+      var bubbleData = [
+        {
+          x: samples[0].otu_ids,
+          y: samples[0].sample_values,
+          text: samples[0].otu_labels,
+          mode: "markers",
+          marker: {
+            size: samples[0].sample_values,
+            color: samples[0].otu_ids,
             colorscale: "Earth"
+            //Look up different color scales 
+          }
         }
-    }]
+      ];
+      Plotly.plot("bubble", bubbleData, bubbleLayout);
 };
-
 
 
 //Initialization funcation to insert dropdown options and plot data and demographic info
@@ -59,13 +62,17 @@ function initialization() {
 
         //Callback functions for plots and demographic info
         demographicPanel(nameID[0]);
+        console.log(samples);
+        // console.log(samples[0].otu_ids);
+        // console.log(samples[0].otu_labels);
+        // console.log(samples[0].sample_values);
+        Charts()
     });
     
 };
 
 //Webpage rest to an inital value in dataset
 initialization();
-
 
 
 
